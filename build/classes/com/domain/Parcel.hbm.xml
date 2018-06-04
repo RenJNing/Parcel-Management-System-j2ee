@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-5-23 16:08:16 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="domain.Parcel" table="PARCEL">
+        <id name="parcel_id" type="java.lang.Integer">
+            <column name="PARCEL_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="sender" type="java.lang.String">
+            <column name="SENDER" />
+        </property>
+        <property name="receiver" type="java.lang.String">
+            <column name="RECEIVER" />
+        </property>
+        <property name="addressTo" type="java.lang.String">
+            <column name="ADDRESSTO" />
+        </property>
+        <property name="addressFrom" type="java.lang.String">
+            <column name="ADDRESSFROM" />
+        </property>
+        <property name="detail" type="java.lang.String">
+            <column name="DETAIL" />
+        </property>
+    </class>
+</hibernate-mapping>
