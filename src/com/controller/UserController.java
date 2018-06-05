@@ -19,7 +19,9 @@ import com.util.LoginData;
 @Controller
 public class UserController {	
 //	@CrossOrigin(origins="*")
+	
 	@RequestMapping(value="/user/login")
+	@ResponseBody
 	public LoginData login(@RequestBody Map<String,String> map, HttpSession session) {
 		LoginData loginData = new LoginData();
 		String email = map.get("email");  
@@ -32,6 +34,17 @@ public class UserController {
 			loginData.setCode(500); 
 			loginData.setMsg("登录失败"); 
         }  
+        return loginData; 
+		
+	}
+	
+	@RequestMapping(value="/user/register")
+	@ResponseBody
+	public LoginData login(@RequestBody User user, HttpSession session) {
+		LoginData loginData = new LoginData();
+		System.out.println(user.getEmail() + ", " + user.getNickname() + ","+ user.getPassword()); 
+			loginData.setCode(200); 
+			loginData.setMsg("登录成功");
         return loginData; 
 		
 	}
