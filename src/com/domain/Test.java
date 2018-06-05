@@ -10,17 +10,28 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 public class Test {
 	public static void main(String[] args) {
-		//Session session = HibernateSessionFactory.getSession();
+//		1. 读取并解析配置文件 hibernate.cfg.xml                    2.创建SessionFactory
 		SessionFactory sf = new Configuration().configure().buildSessionFactory(); 
-	    Session session=sf.openSession();
+//		3.创建Session
+		Session session=sf.openSession();
 	    
     	Transaction trans = session.beginTransaction();
     
 		try {
-	    	testRoster(session);
+			
+//	        Long company_id = createCompany(session);	 
+//	    	Company company = (Company) session.load(Company.class, company_id);
+//	    	createEmployee(company);
+	    	 
+//	    	findEmpolyees(session, company);
+	    	
+//	    	findEmpolyees2(session);
+	    	
+			testCascade(session);
 	    	trans.commit();
 	    	 
 	    } catch (HibernateException e) {
@@ -32,6 +43,7 @@ public class Test {
 	public static Long createCompany(Session session) throws HibernateException {
         Company company = new Company();
         company.setName("Oracle");
+//      将一个临时对象转变为持久化对象
         session.save(company);
         return company.getId();
 	}
@@ -46,6 +58,30 @@ public class Test {
         company.addPerson(emp);
         company.addPerson(emp2);
 	} 
+	
+	public static void testCascade(Session session) {
+		Company company = new Company();
+        company.setName("Test1");
+        
+        Employee emp = new Employee();
+        emp.setName("em1");
+        
+        Employee emp2 = new Employee();
+        emp2.setName("em2");
+        
+        session.save(company);        
+        //company.addPerson(emp);
+        //company.addPerson(emp2);
+        //session.save(company);
+        
+        
+        emp.setCompany(company);
+        emp2.setCompany(company);
+        session.save(emp);
+        session.save(emp2);
+        
+	} 
+
 	
 	public static void findEmpolyees(Session session, Company company) throws HibernateException {
 		
@@ -68,7 +104,7 @@ public class Test {
         String hql="from Employee as emp where emp.company.name =:NAME"; 
         Query query=session.createQuery(hql);
         
-        query.setParameter("NAME","Oracle", Hibernate.STRING);
+        query.setParameter("NAME","Oracle");
         
         List<Employee> result = (List<Employee>)query.list();
         for (int i = 0; i < result.size(); i++) {
@@ -79,7 +115,7 @@ public class Test {
         }
 	}
 	
-	public static void testRoster(Session session) throws HibernateException {
+	/*public static void testRoster(Session session) throws HibernateException {
 		Student s = new Student();
 		s.setName("James");
 		
@@ -100,5 +136,5 @@ public class Test {
             c = (Course) iterator.next();
             System.out.println(c.getName());
         }
-	}
+	}*/
 }

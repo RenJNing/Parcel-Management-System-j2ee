@@ -26,4 +26,13 @@ public class Company implements Serializable {
 	public void setPersons(Set persons) {
 		this.persons = persons;
 	}
+	public void addPerson(Employee person) 
+    {        
+    	persons.add(person);    
+    }
+    
+    public void removePerson(Employee person) 
+    {        
+    	persons.remove(person);    
+    }
 }
