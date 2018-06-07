@@ -1,5 +1,7 @@
 package com.domain;
 
+import java.util.Date;
+//import java.sql.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -12,11 +14,14 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
+import com.util.HibernateUtils;
+
 public class Test {
 	public static void main(String[] args) {
-//		1. ¶ÁÈ¡²¢½âÎöÅäÖÃÎÄ¼þ hibernate.cfg.xml                    2.´´½¨SessionFactory
+		//HibernateUtils h = new HibernateUtils();
+//		1. ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ hibernate.cfg.xml                    2.ï¿½ï¿½ï¿½ï¿½SessionFactory
 		SessionFactory sf = new Configuration().configure().buildSessionFactory(); 
-//		3.´´½¨Session
+//		3.ï¿½ï¿½ï¿½ï¿½Session
 		Session session=sf.openSession();
 	    
     	Transaction trans = session.beginTransaction();
@@ -26,12 +31,21 @@ public class Test {
 //	        Long company_id = createCompany(session);	 
 //	    	Company company = (Company) session.load(Company.class, company_id);
 //	    	createEmployee(company);
-	    	 
+
 //	    	findEmpolyees(session, company);
-	    	
+
 //	    	findEmpolyees2(session);
 	    	
-			testCascade(session);
+//			testCascade(session);
+			Parcel p = new Parcel();
+			p.setDate("2018-06-07");
+    		createParcel(session,p); 
+//			String hql="from User u where u.email=?0 and u.password=?1 ";
+//			User u=(User)h.findByHql(hql,new Object[] {"835380624@qq.com","123456"});
+//			System.out.println(u);
+		
+		
+		
 	    	trans.commit();
 	    	 
 	    } catch (HibernateException e) {
@@ -40,10 +54,44 @@ public class Test {
 	      }
 	    }
 	
+	public static Object findByHql(String hql, Object[] condition) {
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session session=sf.openSession();
+		Transaction trans = session.beginTransaction();
+		Object result = null;
+		try {
+			Query query = session.createQuery(hql);
+			if (condition.length != 0)
+				for (int i = 0; i < condition.length; i++)
+					query.setParameter(i, condition[i]);
+			result = query.uniqueResult();
+			trans.commit();
+		} catch (Exception e) {
+			trans.rollback();
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return result;
+	}
+	
+	private static void createUser(Session session, String string, String string2, String string3) {
+		// TODO Auto-generated method stub
+		User user=new User();
+		user.setEmail(string);
+		user.setNickname(string2);
+		user.setPassword(string3);
+		session.save(user);
+	}
+	private static void createParcel(Session session, Parcel p) {
+		// TODO Auto-generated method stub
+		session.save(p);
+	}
+
 	public static Long createCompany(Session session) throws HibernateException {
         Company company = new Company();
         company.setName("Oracle");
-//      ½«Ò»¸öÁÙÊ±¶ÔÏó×ª±äÎª³Ö¾Ã»¯¶ÔÏó
+//      ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½Îªï¿½Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
         session.save(company);
         return company.getId();
 	}

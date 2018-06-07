@@ -2,10 +2,15 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping>
-    <class name="com.domain.User" table="user">
+<hibernate-mapping
+>
+    <class
+        name="com.domain.Employee"
+        table="employee"
+    >
+
         <id
-            name="user_id"
+            name="id"
             column="id"
             type="java.lang.Long"
         >
@@ -13,22 +18,19 @@
         </id>
 
         <property
-            name="email"
+            name="name"
             type="java.lang.String"
-            column="email"
+            column="name"
         />
-        
-        <property
-            name="nickname"
-            type="java.lang.String"
-            column="nickname"
+
+        <many-to-one
+            name="company"
+            class="com.domain.Company"
+            cascade="none"
+            outer-join="auto"
+            column="company_id"
         />
-        
-        <property
-            name="password"
-            type="java.lang.String"
-            column="password"
-        />
+
     </class>
 
 </hibernate-mapping>

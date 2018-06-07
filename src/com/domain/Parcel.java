@@ -1,78 +1,70 @@
 package com.domain;
 
-public class Parcel implements java.io.Serializable{
-	private Integer parcel_id;
-	private String sender;
-	private String receiver;
-	private String addressTo;
-	private String addressFrom;
-	private String detail;
-	
-	public Parcel() {
-		
-	}
+import java.io.Serializable;
+import java.util.Date;
 
-	public Parcel(Integer parcel_id) {
-		super();
-		this.parcel_id = parcel_id;
-	}
-
-	public Parcel(Integer parcel_id, String sender, String receiver, String addressTo, String addressFrom,
-			String detail) {
-		super();
-		this.parcel_id = parcel_id;
-		this.sender = sender;
-		this.receiver = receiver;
-		this.addressTo = addressTo;
-		this.addressFrom = addressFrom;
-		this.detail = detail;
-	}
-
-	public Integer getParcel_id() {
+public class Parcel implements Serializable{
+	private Long parcel_id;
+	private String sendername;
+	private String receivename;
+	private String senderaddress;
+	private String receiveaddress;
+	private String senderphone;
+	private String receivephone;
+	private Integer status;
+	private String date;
+	public Long getParcel_id() {
 		return parcel_id;
 	}
-
-	public void setParcel_id(Integer parcel_id) {
+	public void setParcel_id(Long parcel_id) {
 		this.parcel_id = parcel_id;
 	}
-
-	public String getSender() {
-		return sender;
+	public String getSendername() {
+		return sendername;
 	}
-
-	public void setSender(String sender) {
-		this.sender = sender;
+	public void setSendername(String sendername) {
+		this.sendername = sendername;
 	}
-
-	public String getReceiver() {
-		return receiver;
+	public String getReceivename() {
+		return receivename;
 	}
-
-	public void setReceiver(String receiver) {
-		this.receiver = receiver;
+	public void setReceivename(String receivename) {
+		this.receivename = receivename;
 	}
-
-	public String getAddressTo() {
-		return addressTo;
+	public String getSenderaddress() {
+		return senderaddress;
 	}
-
-	public void setAddressTo(String addressTo) {
-		this.addressTo = addressTo;
+	public void setSenderaddress(String senderaddress) {
+		this.senderaddress = senderaddress;
 	}
-
-	public String getAddressFrom() {
-		return addressFrom;
+	public String getReceiveaddress() {
+		return receiveaddress;
 	}
-
-	public void setAddressFrom(String addressFrom) {
-		this.addressFrom = addressFrom;
+	public void setReceiveaddress(String receiveaddress) {
+		this.receiveaddress = receiveaddress;
 	}
-
-	public String getDetail() {
-		return detail;
+	public String getSenderphone() {
+		return senderphone;
 	}
-
-	public void setDetail(String detail) {
-		this.detail = detail;
+	public void setSenderphone(String senderphone) {
+		this.senderphone = senderphone;
+	}
+	public String getReceivephone() {
+		return receivephone;
+	}
+	public void setReceivephone(String receivephone) {
+		this.receivephone = receivephone;
+	}
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {	
+		this.date = date.substring(0, 10);
 	}
 }

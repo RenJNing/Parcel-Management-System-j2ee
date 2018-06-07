@@ -1,21 +1,34 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2018-5-23 16:08:16 by Hibernate Tools 3.5.0.Final -->
+
 <hibernate-mapping>
-    <class name="domain.User" table="USER">
-        <id name="user_id" type="java.lang.Integer">
-            <column name="USER_ID" />
-            <generator class="assigned" />
+    <class name="com.domain.User" table="user">
+        <id
+            name="user_id"
+            column="id"
+            type="java.lang.Long"
+        >
+            <generator class="increment"/>
         </id>
-        <property name="email" type="java.lang.String">
-            <column name="EMAIL" />
-        </property>
-        <property name="nickname" type="java.lang.String">
-            <column name="NICKNAME" />
-        </property>
-        <property name="password" type="java.lang.String">
-            <column name="PASSWORD" />
-        </property>
+
+        <property
+            name="email"
+            type="java.lang.String"
+            column="email"
+        />
+        
+        <property
+            name="nickname"
+            type="java.lang.String"
+            column="nickname"
+        />
+        
+        <property
+            name="password"
+            type="java.lang.String"
+            column="password"
+        />
     </class>
+
 </hibernate-mapping>

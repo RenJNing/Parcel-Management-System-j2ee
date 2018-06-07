@@ -3,25 +3,57 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2018-5-23 16:08:16 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="domain.Parcel" table="PARCEL">
-        <id name="parcel_id" type="java.lang.Integer">
-            <column name="PARCEL_ID" />
-            <generator class="assigned" />
+    <class name="com.domain.Parcel" table="parcel">
+        <id
+            name="parcel_id"
+            column="parce_id"
+            type="java.lang.Long"
+        >
+            <generator class="increment"/>
         </id>
-        <property name="sender" type="java.lang.String">
-            <column name="SENDER" />
-        </property>
-        <property name="receiver" type="java.lang.String">
-            <column name="RECEIVER" />
-        </property>
-        <property name="addressTo" type="java.lang.String">
-            <column name="ADDRESSTO" />
-        </property>
-        <property name="addressFrom" type="java.lang.String">
-            <column name="ADDRESSFROM" />
-        </property>
-        <property name="detail" type="java.lang.String">
-            <column name="DETAIL" />
-        </property>
+
+        <property
+            name="sendername"
+            type="java.lang.String"
+            column="sendername"
+        />
+        
+        <property
+            name="receivename"
+            type="java.lang.String"
+            column="receivename"
+        />
+        
+        <property
+            name="senderaddress"
+            type="java.lang.String"
+            column="senderaddress"
+        />
+        
+                <property
+            name="receiveaddress"
+            type="java.lang.String"
+            column="receiveaddress"
+        />
+                <property
+            name="senderphone"
+            type="java.lang.String"
+            column="senderphone"
+        />
+                <property
+            name="receivephone"
+            type="java.lang.String"
+            column="receivephone"
+        />
+                <property
+            name="status"
+            type="java.lang.Integer"
+            column="status"
+        />
+                <property
+            name="date"
+            type="java.lang.String"
+            column="date"
+        />
     </class>
 </hibernate-mapping>

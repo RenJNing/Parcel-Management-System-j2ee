@@ -1,28 +1,16 @@
 package com.domain;
 
-public class User implements java.io.Serializable{
-	private Integer user_id;
+import java.io.Serializable;
+
+public class User implements Serializable {
+	private Long user_id;
 	private String email;
 	private String nickname;
 	private String password;
-	
-	public User() {
-		
-	}
-	public User(Integer user_id) {
-		this.user_id=user_id;
-	}
-	
-	public User(Integer user_id,String email,String nickname,String password) {
-		this.user_id=user_id;
-		this.email=email;
-		this.nickname=nickname;
-		this.password=password;
-	}
-	public Integer getUser_id() {
+	public Long getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(Integer user_id) {
+	public void setUser_id(Long user_id) {
 		this.user_id = user_id;
 	}
 	public String getEmail() {
@@ -43,7 +31,5 @@ public class User implements java.io.Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-	
+
 }
