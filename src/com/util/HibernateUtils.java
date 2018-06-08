@@ -70,6 +70,23 @@ public class HibernateUtils {
 		return list;
 		
 	}
+	public List<Object> findByHqlAll(String hql) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		List<Object> list=null;
+		try {
+			Query query = session.createQuery(hql);
+			list = query.list();
+			tx.commit();
+		}catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return list;
+		
+	}
 	public boolean update(Object obj) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();

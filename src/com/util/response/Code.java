@@ -18,4 +18,5 @@ public interface Code {
 	int SYSTEM_ERROR = -1;
 	
 	int NO_PARCEL = 302;
+	int NO_TOPIC = 304;
 }

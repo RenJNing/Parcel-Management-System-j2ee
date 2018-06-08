@@ -29,9 +29,14 @@ public class UserController {
 		
 		int status=userService.login(user);
 		if(status==Code.SUCCEED) {
-			session.setAttribute("user",userService.getUser(user));
+			user = userService.getUser(user);
+			session.setAttribute("user", user);
+			return new ResponseData(status, user); 
 		}
-        return new ResponseData(status); 
+		else
+		{
+			return new ResponseData(status); 
+		}
 	}
 	
 	@RequestMapping(value="/user/register")

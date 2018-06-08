@@ -17,7 +17,8 @@
   
   <mapping resource="com/domain/Parcel.hbm.xml"/>
   <mapping resource="com/domain/User.hbm.xml"/>
-  
+  <mapping resource="com/domain/Topic.hbm.xml"/>
+  <mapping resource="com/domain/Comment.hbm.xml"/>
   <mapping resource="com/domain/Company.hbm.xml"/>
   <mapping resource="com/domain/Employee.hbm.xml"/>	
  </session-factory>
