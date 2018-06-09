@@ -29,5 +29,17 @@ public class Parceldao {
 		return (Parcel) hibernateUtils.findByHql("from Parcel p where p.id=?0", new Object[] { id });
 	}
 	
+	public  List<Object> getParcelByUseremail(String useremail) {
+		return  hibernateUtils.findByHqlAll("from Parcel p where p.useremail=?0", new Object[] { useremail });
+	}	
 	
+	public List<Object> getParcelsByStatus(Integer status) {
+		return hibernateUtils.findByHqlAll("from Parcel p where p.status=?0", new Object[] { status });
+	}
+	
+	public boolean acceptParcel(Long parcelId) {
+		Parcel p = (Parcel) hibernateUtils.findByHql("from Parcel p where p.id=?0", new Object[] { parcelId });
+		p.setStatus(1);
+		return hibernateUtils.update(p);
+	}
 }

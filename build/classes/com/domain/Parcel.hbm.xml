@@ -55,5 +55,11 @@
             type="java.lang.String"
             column="date"
         />
+        
+                <property
+            name="useremail"
+            type="java.lang.String"
+            column="useremail"
+        />
     </class>
 </hibernate-mapping>

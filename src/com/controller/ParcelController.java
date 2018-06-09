@@ -24,8 +24,22 @@ public class ParcelController {
 	@ResponseBody
 	@RequestMapping("/user/sendparcel")
 	public ResponseData createParcel(@RequestBody Parcel parcel){
+		parcel.setStatus(new Integer(0));
 		int status = parcelService.createParcel(parcel);
 		return new ResponseData(status);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/user/getmyparcel")
+	public ResponseData getMyParcel(@RequestBody Map<String, String> map) {
+		System.out.print(map.get("useremail"));
+		List<Parcel> myParcels = parcelService.getParcelByUseremail(map.get("useremail"));
+		if(myParcels==null) {
+			return new ResponseData(Code.NO_PARCEL);
+		}
+		else {
+			return new ResponseData(Code.SUCCEED, myParcels);
+		}
 	}
 	
 	@ResponseBody
@@ -52,5 +66,31 @@ public class ParcelController {
 		else {
 			return new ResponseData(Code.SUCCEED, parcels);
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/admin/getunacceptedparcel")
+	public ResponseData getAcceptedParcels() {
+		List<Parcel> unacceptedParcels = parcelService.getParcelsByStatus(new Integer(0));
+		if(unacceptedParcels.isEmpty()) {
+			return new ResponseData(Code.NO_PARCEL);
+		}
+		else {
+			return new ResponseData(Code.SUCCEED, unacceptedParcels);
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/admin/acceptparcel")
+	public ResponseData acceptParcel(@RequestBody Map<String, Long[]> map){
+		System.out.println("=====================================");
+		System.out.println(map.get("parcel_ids"));
+		int status = Code.SUCCEED;
+		for(Long parcelId: map.get("parcel_ids")) {
+			if(!parcelService.acceptParcel(parcelId)) {
+				status = Code.SYSTEM_ERROR;
+			}
+		}
+		return new ResponseData(status);
 	}
 }

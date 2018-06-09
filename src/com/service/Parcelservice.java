@@ -28,6 +28,15 @@ public class Parcelservice {
 		return parcel;
 	}
 	
+	public List<Parcel> getParcelByUseremail(String useremail) {
+		List<Object> parcelsObj=parcelDao.getParcelByUseremail(useremail);
+		List<Parcel> parcels=new ArrayList<Parcel>();
+		for(Object o:parcelsObj){
+			parcels.add((Parcel)o);
+		}
+		return parcels;
+	}
+	
 	public List<Parcel> getAllParcel(String receivephone){
 		List<Object> parcelObj=parcelDao.getAllParcel(receivephone);
 		List<Parcel> parcel=new ArrayList<Parcel>();
@@ -35,5 +44,18 @@ public class Parcelservice {
 			parcel.add((Parcel)o);
 		}
 		return parcel;
+	}
+	
+	public List<Parcel> getParcelsByStatus(Integer status){
+		List<Object> parcelObj=parcelDao.getParcelsByStatus(status);
+		List<Parcel> parcels=new ArrayList<Parcel>();
+		for(Object o:parcelObj){
+			parcels.add((Parcel)o);
+		}
+		return parcels;
+	}
+	
+	public boolean acceptParcel(Long parcelId) {
+		return parcelDao.acceptParcel(parcelId);
 	}
 }

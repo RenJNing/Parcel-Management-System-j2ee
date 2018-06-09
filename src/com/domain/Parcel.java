@@ -13,6 +13,7 @@ public class Parcel implements Serializable{
 	private String receivephone;
 	private Integer status;
 	private String date;
+	private String useremail;
 	public Long getParcel_id() {
 		return parcel_id;
 	}
@@ -66,5 +67,11 @@ public class Parcel implements Serializable{
 	}
 	public void setDate(String date) {	
 		this.date = date.substring(0, 10);
+	}
+	public String getUseremail() {
+		return useremail;
+	}
+	public void setUseremail(String useremail) {
+		this.useremail = useremail;
 	}
 }
